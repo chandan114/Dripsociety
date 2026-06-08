@@ -24,9 +24,12 @@
       </a>
     </div>
     {% if request.page_type == 'product' %}
-      {% render 'product-timberland-injected-blocks' %}
+      {% render 'product-timberland-injected-header' %}
     {% endif %}
     {% content_for 'blocks' %}
+    {% if request.page_type == 'product' %}
+      {% render 'product-timberland-injected-features' %}
+    {% endif %}
   {% endcapture %}
 
   {% render 'group', children: children, settings: block_settings, shopify_attributes: block.shopify_attributes %}

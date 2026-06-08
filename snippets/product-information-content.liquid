@@ -67,17 +67,12 @@
     endif
   endif
 
-  # Determine content width — product pages use full bleed layout
-  if request.page_type == 'product'
-    assign content_width = 'full-width'
-  else
-    case settings.content_width
-      when 'content-center-aligned'
-        assign content_width = 'page-width'
-      when 'content-full-width'
-        assign content_width = 'full-width'
-    endcase
-  endif
+  case settings.content_width
+    when 'content-center-aligned'
+      assign content_width = 'page-width'
+    when 'content-full-width'
+      assign content_width = 'full-width'
+  endcase
 %}
 
 {% render 'product-page-timberland-styles' %}
@@ -92,14 +87,16 @@
     {% assign product_href = '#ProductInformation-' | append: section_id %}
     {% render 'skip-to-content-link', href: product_href, text: 'accessibility.skip_to_product_info' %}
   {% endif %}
+  {% if request.page_type == 'product' %}
+    <div class="product-page-timberland__breadcrumbs">
+      {% render 'product-breadcrumbs', product: product %}
+    </div>
+  {% endif %}
+
   <div
     class="{{ product_grid_class }}"
     data-product-grid-content
   >
-    {% if request.page_type == 'product' %}
-      {% render 'product-breadcrumbs', product: product %}
-    {% endif %}
-
     {% assign render_order_array = render_order | split: ',' %}
     {% capture media %}
       <div
@@ -323,5 +320,36 @@
   /* If the header is sticky, make product details content stick underneath the header */
   body:has(#header-group #header-component[data-sticky-state='active']) .product-details.sticky-content--desktop {
     --sticky-header-offset: var(--header-height);
+  }
+
+  /* Let timberland product layout override default grid placement */
+  .product-page-timberland .product-information__media {
+    width: 100%;
+    min-width: 0;
+  }
+
+  @media screen and (max-width: 749px) {
+    .product-page-timberland .product-information__media,
+    .product-page-timberland .product-details {
+      grid-column: 1 / -1;
+    }
+  }
+
+  @media screen and (min-width: 750px) {
+    .product-page-timberland .product-information__grid {
+      grid-column: 1 / -1;
+    }
+
+    .product-page-timberland .product-information__grid.product-information__grid--half {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    }
+
+    .product-page-timberland.section--full-width .product-information__grid--half.product-information--media-left .product-information__media {
+      grid-column: 1;
+    }
+
+    .product-page-timberland.section--full-width .product-information__grid--half.product-information--media-left .product-details {
+      grid-column: 2;
+    }
   }
 {% endstylesheet %}

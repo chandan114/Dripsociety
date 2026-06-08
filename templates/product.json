@@ -10,15 +10,15 @@
             "media_presentation": "carousel",
             "media_columns": "one",
             "image_gap": 0,
-            "large_first_image": false,
+            "large_first_image": true,
             "icons_style": "arrow",
             "slideshow_controls_style": "counter",
             "slideshow_mobile_controls_style": "counter",
             "thumbnail_position": "bottom",
             "thumbnail_width": 44,
             "thumbnail_radius": 0,
-            "aspect_ratio": "adapt",
-            "constrain_to_viewport": true,
+            "aspect_ratio": "1",
+            "constrain_to_viewport": false,
             "media_fit": "contain",
             "media_radius": 0,
             "extend_media": false,
@@ -186,8 +186,8 @@
           "block_order": [
             "text_GnyQiN",
             "price_a7krng",
-            "variant_picker_UxKy6B",
             "product_description_gmcqbM",
+            "variant_picker_UxKy6B",
             "buy_buttons_eYQEYi"
           ]
         }
@@ -197,7 +197,7 @@
         "desktop_media_position": "left",
         "equal_columns": true,
         "limit_details_width": false,
-        "gap": 64,
+        "gap": 48,
         "enable_sticky_add_to_cart": true,
         "color_scheme": "",
         "padding-block-start": 0,
@@ -309,100 +309,12 @@
                 "padding-inline-end": 0
               },
               "blocks": {}
-            },
-            "card_rating": {
-              "type": "text",
-              "settings": {
-                "text": "<p class=\"product-rating-placeholder\"><span class=\"product-rating-placeholder__stars\" aria-hidden=\"true\">&#9734;&#9734;&#9734;&#9734;&#9734;</span> No reviews</p>",
-                "width": "100%",
-                "max_width": "normal",
-                "alignment": "left",
-                "type_preset": "paragraph",
-                "font": "var(--font-body--family)",
-                "font_size": "0.75rem",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "wrap": "pretty",
-                "color": "var(--color-foreground)",
-                "background": false,
-                "background_color": "#00000026",
-                "corner_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            },
-            "card_buy": {
-              "type": "custom-liquid",
-              "settings": {
-                "custom_liquid": "<a href=\"{{ closest.product.url }}\" class=\"timberland-card-buy button-secondary\">Buy now</a>"
-              },
-              "blocks": {}
-            },
-            "card_features": {
-              "type": "group",
-              "settings": {
-                "content_direction": "row",
-                "vertical_on_mobile": false,
-                "horizontal_alignment": "flex-start",
-                "vertical_alignment": "center",
-                "gap": 8,
-                "width": "fill",
-                "custom_width": 100,
-                "width_mobile": "fill",
-                "custom_width_mobile": 100,
-                "height": "fit",
-                "custom_height": 100,
-                "inherit_color_scheme": true,
-                "color_scheme": "",
-                "background_media": "none",
-                "border": "none",
-                "border_width": 1,
-                "border_opacity": 100,
-                "border_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {
-                "icon_1": {
-                  "type": "icon",
-                  "settings": {
-                    "icon": "leather",
-                    "width": 16,
-                    "link": "",
-                    "open_in_new_tab": false
-                  },
-                  "blocks": {}
-                },
-                "icon_2": {
-                  "type": "icon",
-                  "settings": {
-                    "icon": "washing",
-                    "width": 16,
-                    "link": "",
-                    "open_in_new_tab": false
-                  },
-                  "blocks": {}
-                }
-              },
-              "block_order": [
-                "icon_1",
-                "icon_2"
-              ]
             }
           },
           "block_order": [
             "product-card-gallery",
             "price",
-            "product_title",
-            "card_rating",
-            "card_buy",
-            "card_features"
+            "product_title"
           ]
         }
       },

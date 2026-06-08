@@ -1,0 +1,23 @@
+{% doc %}
+  Vendor and rating blocks injected before product detail blocks.
+{% enddoc %}
+
+{% liquid
+  assign timberland_product = closest.product
+  if timberland_product == blank
+    assign timberland_product = product
+  endif
+%}
+
+{% if timberland_product.vendor != blank %}
+  <div class="text-block timberland-injected timberland-injected-vendor">
+    <p class="product-vendor">{{ timberland_product.vendor | escape }}</p>
+  </div>
+{% endif %}
+
+<div class="text-block timberland-injected timberland-injected-rating">
+  <p class="product-rating-placeholder">
+    <span class="product-rating-placeholder__stars" aria-hidden="true">&#9734;&#9734;&#9734;&#9734;&#9734;</span>
+    No reviews
+  </p>
+</div>

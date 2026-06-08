@@ -1,0 +1,21 @@
+{% doc %}
+  Main features block injected after description and price.
+{% enddoc %}
+
+<div class="timberland-injected timberland-injected-features">
+  <p class="product-main-features__title">Main features</p>
+  <ul class="product-main-features__list" role="list">
+    <li class="product-main-features__item">
+      {% render 'icon-or-image', icon: 'leather', width: 24, class_name: 'timberland-feature-icon' %}
+      <span>Premium leather</span>
+    </li>
+    <li class="product-main-features__item">
+      {% render 'icon-or-image', icon: 'washing', width: 24, class_name: 'timberland-feature-icon' %}
+      <span>Waterproof</span>
+    </li>
+    <li class="product-main-features__item">
+      {% render 'icon-or-image', icon: 'lightning_bolt', width: 24, class_name: 'timberland-feature-icon' %}
+      <span>Windproof</span>
+    </li>
+  </ul>
+</div>
