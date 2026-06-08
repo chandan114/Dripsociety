@@ -38,6 +38,8 @@
     "quick_add": true,
     "mobile_quick_add": false,
     "quick_add_color_scheme": "scheme-1",
+    "show_second_image_on_hover": true,
+    "product_card_carousel": true,
     "product_corner_radius": 10,
     "card_corner_radius": 10,
     "show_variant_image": true,
