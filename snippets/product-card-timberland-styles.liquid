@@ -1,8 +1,8 @@
 {% stylesheet %}
   .product-card--timberland {
-    --timberland-card-bg: #f3f3f3;
-    --timberland-card-gutter: 1rem;
-    --timberland-card-radius: 12px;
+    --timberland-card-bg: #f5f5f5;
+    --timberland-card-gutter: 1.25rem;
+    --timberland-card-radius: 16px;
     height: 100%;
   }
 
@@ -13,51 +13,144 @@
     padding: 0;
     gap: 0;
     height: 100%;
+    display: flex;
+    flex-direction: column;
   }
 
+  /* Image — full bleed top, rounded top corners only */
   .product-card--timberland .product-card__content > *:first-child,
-  .product-card--timberland .product-card__content > .product-card-gallery,
+  .product-card--timberland .product-card__content > [class*='card-gallery'],
   .product-card--timberland .product-card__content > [class*='product-card-gallery'] {
+    flex-shrink: 0;
+    padding: 0;
+    margin: 0;
+    width: 100%;
     background: var(--timberland-card-bg);
   }
 
-  .product-card--timberland .product-card__content > *:not(:first-child) {
+  .product-card--timberland .card-gallery,
+  .product-card--timberland [class*='card-gallery'] {
+    border-radius: var(--timberland-card-radius) var(--timberland-card-radius) 0 0;
+    overflow: hidden;
+  }
+
+  .product-card--timberland .card-gallery img,
+  .product-card--timberland .product-media-container img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .product-card--timberland .product-grid-view-zoom-out--details {
+    display: none;
+  }
+
+  .product-card--timberland quick-add,
+  .product-card--timberland .quick-add {
+    display: none;
+  }
+
+  /* Flatten nested group blocks from theme editor */
+  .product-card--timberland .product-card__content > .group-block {
+    flex: 1;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    background: transparent;
+    border: none;
+  }
+
+  .product-card--timberland .product-card__content > .group-block > .group-block-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: var(--timberland-card-gutter) var(--timberland-card-gutter) 0;
+    gap: 0.35rem;
+  }
+
+  /* Direct children (non-group layout) */
+  .product-card--timberland .product-card__content > product-price,
+  .product-card--timberland .product-card__content > [class*='product-title'],
+  .product-card--timberland .product-card__content > .text-block:not(.product-card-timberland-footer *) {
     padding-inline: var(--timberland-card-gutter);
   }
 
-  .product-card--timberland .product-card__content > *:last-child {
-    padding-block-end: var(--timberland-card-gutter);
-  }
-
-  .product-card--timberland product-price,
-  .product-card--timberland .price {
-    padding-block-start: var(--timberland-card-gutter);
+  /* Direct block layout: gallery → price → title */
+  .product-card--timberland .product-card__content > product-price {
+    order: 2;
+    padding: var(--timberland-card-gutter) var(--timberland-card-gutter) 0;
     font-size: 0.9375rem;
-    font-weight: var(--font-weight-semibold);
+    font-weight: var(--font-weight-regular);
     margin: 0;
   }
 
-  .product-card--timberland .product-title,
-  .product-card--timberland [class*='product-title'],
-  .product-card--timberland .text-block h3,
-  .product-card--timberland .text-block p:not(.product-rating-placeholder) {
-    font-size: 0.875rem;
-    line-height: 1.35;
+  .product-card--timberland .product-card__content > [class*='product-title'],
+  .product-card--timberland .product-card__content > .text-block:has(a[href*='/products']) {
+    order: 3;
+    padding: 0 var(--timberland-card-gutter);
+    font-size: 1.125rem;
+    font-weight: var(--font-weight-semibold);
+    line-height: 1.3;
     margin: 0;
+  }
+
+  .product-card--timberland .product-card-timberland-footer {
+    order: 10;
+  }
+
+  .product-card--timberland .product-card__content > .group-block {
+    order: 2;
+  }
+
+  .product-card--timberland .product-card__content > product-price:first-of-type,
+  .product-card--timberland .group-block-content product-price {
+    order: 1;
+    padding-block-start: 0;
+    padding-block-end: 0;
+    padding-inline: 0;
+    font-size: 0.9375rem;
+    font-weight: var(--font-weight-regular);
+    margin: 0;
+  }
+
+  .product-card--timberland .group-block-content [class*='product-title'],
+  .product-card--timberland .group-block-content .product-title {
+    order: 2;
+    padding: 0;
+    font-size: 1.125rem;
+    font-weight: var(--font-weight-semibold);
+    line-height: 1.3;
+    margin: 0;
+  }
+
+  .product-card--timberland .swatches,
+  .product-card--timberland [class*='swatches'] {
+    display: none;
   }
 
   .product-card--timberland .product-rating-placeholder {
     display: flex;
     align-items: center;
-    gap: var(--gap-xs);
-    margin: 0.35rem 0;
+    gap: 0.35rem;
+    margin: 0.25rem 0 0;
+    padding: 0;
     font-size: 0.75rem;
-    color: rgb(var(--color-foreground-rgb) / 0.55);
+    color: rgb(var(--color-foreground-rgb) / 0.5);
   }
 
   .product-card--timberland .product-rating-placeholder__stars {
-    letter-spacing: 0.12em;
+    letter-spacing: 0.1em;
     color: rgb(var(--color-foreground-rgb) / 0.25);
+  }
+
+  .product-card--timberland .product-card-timberland-footer {
+    padding: 0.5rem var(--timberland-card-gutter) var(--timberland-card-gutter);
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.65rem;
+    margin-top: auto;
   }
 
   .product-card--timberland .timberland-card-buy {
@@ -65,30 +158,46 @@
     align-items: center;
     justify-content: center;
     width: 100%;
-    min-height: 2.5rem;
-    margin-block: 0.5rem 0.35rem;
+    min-height: 2.75rem;
+    padding-inline: 1.5rem;
     border-radius: 999px;
     text-decoration: none;
     text-transform: none;
     font-size: 0.875rem;
     font-weight: var(--font-weight-medium);
+    background: transparent;
+    color: var(--color-foreground);
+    box-shadow: inset 0 0 0 1px var(--color-foreground);
   }
 
-  .product-card--timberland .product-card__content .group-block:has(.icon-block) {
+  .product-card--timberland .timberland-card-buy:hover {
+    background: rgb(var(--color-foreground-rgb) / 0.04);
+  }
+
+  .product-card--timberland .product-card-timberland-features {
     display: flex;
-    flex-direction: row;
-    gap: 0.5rem;
-    padding-block-end: var(--timberland-card-gutter);
-    opacity: 0.7;
+    align-items: center;
+    gap: 0.65rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
   }
 
-  .product-card--timberland .product-card__content .group-block:has(.icon-block) .icon-block__media {
+  .product-card--timberland .product-card-timberland-features__icon {
     width: 1rem;
     height: 1rem;
+    opacity: 0.85;
   }
 
   .product-card--timberland .product-card__content .rating-wrapper {
-    padding-inline: var(--timberland-card-gutter);
+    order: 3;
     font-size: 0.75rem;
+    padding: 0;
+  }
+
+  /* Hide duplicate buy links from theme editor blocks */
+  .product-card--timberland .product-card__content .timberland-card-buy ~ .timberland-card-buy,
+  .product-card--timberland .product-card__content .group-block:has(.icon-block) {
+    display: none;
   }
 {% endstylesheet %}

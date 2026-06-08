@@ -1,0 +1,18 @@
+{% doc %}
+  Default Timberland-style footer for product cards (rating, buy button, feature icons).
+{% enddoc %}
+
+{% unless product == blank %}
+  <div class="product-card-timberland-footer">
+    <p class="product-rating-placeholder">
+      <span class="product-rating-placeholder__stars" aria-hidden="true">&#9734;&#9734;&#9734;&#9734;&#9734;</span>
+      No reviews
+    </p>
+    <a href="{{ product_url }}" class="timberland-card-buy button-secondary">Buy now</a>
+    <ul class="product-card-timberland-features" role="list">
+      <li>{% render 'icon-or-image', icon: 'leather', width: 16, class_name: 'product-card-timberland-features__icon' %}</li>
+      <li>{% render 'icon-or-image', icon: 'washing', width: 16, class_name: 'product-card-timberland-features__icon' %}</li>
+      <li>{% render 'icon-or-image', icon: 'lightning_bolt', width: 16, class_name: 'product-card-timberland-features__icon' %}</li>
+    </ul>
+  </div>
+{% endunless %}

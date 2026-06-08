@@ -107,6 +107,9 @@
     "
   >
     {{ children }}
+    {% unless onboarding %}
+      {% render 'product-card-timberland-injected', product: product, product_url: variant_to_link.url %}
+    {% endunless %}
   </div>
 </product-card>
 
