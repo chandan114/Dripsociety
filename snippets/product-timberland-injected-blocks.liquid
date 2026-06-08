@@ -1,0 +1,42 @@
+{% doc %}
+  Timberland-style product detail blocks injected via code so they persist
+  even when templates/product.json is reset by the theme editor.
+{% enddoc %}
+
+{% liquid
+  assign timberland_product = closest.product
+  if timberland_product == blank
+    assign timberland_product = product
+  endif
+%}
+
+{% if timberland_product.vendor != blank %}
+  <div class="text-block timberland-injected timberland-injected-vendor">
+    <p class="product-vendor">{{ timberland_product.vendor | escape }}</p>
+  </div>
+{% endif %}
+
+<div class="text-block timberland-injected timberland-injected-rating">
+  <p class="product-rating-placeholder">
+    <span class="product-rating-placeholder__stars" aria-hidden="true">&#9734;&#9734;&#9734;&#9734;&#9734;</span>
+    No reviews
+  </p>
+</div>
+
+<div class="timberland-injected timberland-injected-features">
+  <p class="product-main-features__title">Main features</p>
+  <ul class="product-main-features__list" role="list">
+    <li class="product-main-features__item">
+      {% render 'icon-or-image', icon: 'leather', width: 24, class_name: 'timberland-feature-icon' %}
+      <span>Premium leather</span>
+    </li>
+    <li class="product-main-features__item">
+      {% render 'icon-or-image', icon: 'washing', width: 24, class_name: 'timberland-feature-icon' %}
+      <span>Waterproof</span>
+    </li>
+    <li class="product-main-features__item">
+      {% render 'icon-or-image', icon: 'lightning_bolt', width: 24, class_name: 'timberland-feature-icon' %}
+      <span>Windproof</span>
+    </li>
+  </ul>
+</div>

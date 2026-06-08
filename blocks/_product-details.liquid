@@ -23,6 +23,9 @@
         {{- closest.product.title }}
       </a>
     </div>
+    {% if request.page_type == 'product' %}
+      {% render 'product-timberland-injected-blocks' %}
+    {% endif %}
     {% content_for 'blocks' %}
   {% endcapture %}
 

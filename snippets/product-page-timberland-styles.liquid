@@ -4,6 +4,75 @@
     --timberland-muted: rgb(var(--color-foreground-rgb) / 0.55);
   }
 
+  /* Force 50/50 layout regardless of theme editor settings */
+  @media screen and (min-width: 750px) {
+    .product-page-timberland .product-information__grid:not(.product-information--media-none).product-information--media-left {
+      grid-template-columns: 1fr 1fr;
+      grid-column: 1 / -1;
+    }
+
+    .product-page-timberland .product-information__grid:not(.product-information--media-none).product-information--media-left .product-information__media {
+      grid-column: 1;
+    }
+
+    .product-page-timberland .product-information__grid:not(.product-information--media-none).product-information--media-left .product-details {
+      grid-column: 2;
+    }
+  }
+
+  /* Reorder blocks without relying on product.json */
+  .product-page-timberland .product-details > .group-block > .group-block-content {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .product-page-timberland .timberland-injected-vendor { order: 1; }
+  .product-page-timberland .product-details .group-block-content > .text-block:has(h1) { order: 2; }
+  .product-page-timberland .timberland-injected-rating { order: 3; }
+  .product-page-timberland .product-details .rating-wrapper { order: 3; }
+  .product-page-timberland .timberland-injected-rating:has(~ .rating-wrapper) { display: none; }
+  .product-page-timberland .product-details .product-description,
+  .product-page-timberland .product-details [class*='product-description'] { order: 4; }
+  .product-page-timberland .timberland-injected-features { order: 5; }
+  .product-page-timberland .product-details variant-picker { order: 6; }
+  .product-page-timberland .product-details product-price { order: 7; }
+  .product-page-timberland .product-details .buy-buttons-block { order: 8; }
+  .product-page-timberland .product-details .group-block:not(.group-block-content *) { order: 9; }
+
+  .product-page-timberland .timberland-injected-features .product-main-features__list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--padding-xl);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .product-page-timberland .timberland-injected-features .product-main-features__item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--padding-sm);
+    min-width: 5.5rem;
+    text-align: center;
+    font-size: 0.75rem;
+    color: var(--timberland-muted);
+  }
+
+  .product-page-timberland .timberland-injected-features .timberland-feature-icon {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  .product-page-timberland .timberland-injected-features {
+    margin-block: var(--padding-lg);
+  }
+
+  /* Hide old theme-editor value cards when injected features are present */
+  .product-page-timberland .timberland-injected-features ~ .group-block {
+    display: none;
+  }
+
   .product-page-timberland .product-breadcrumbs {
     grid-column: 1 / -1;
     margin-block-end: var(--padding-lg);
