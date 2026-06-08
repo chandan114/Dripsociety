@@ -2,9 +2,41 @@
   .product-page-timberland {
     --timberland-media-bg: #f3f3f3;
     --timberland-muted: rgb(var(--color-foreground-rgb) / 0.55);
+    --timberland-page-gutter: clamp(1rem, 3vw, 3rem);
   }
 
-  /* Force 50/50 layout regardless of theme editor settings */
+  /* Full-bleed product layout — no side page margins */
+  .product-page-timberland.section.section--full-width > .product-information__grid {
+    grid-column: 1 / -1;
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    gap: 0;
+  }
+
+  .product-page-timberland .product-breadcrumbs {
+    grid-column: 1 / -1;
+    margin-block-end: var(--padding-md);
+    padding-inline: var(--timberland-page-gutter);
+  }
+
+  .product-page-timberland .product-information__media {
+    padding: 0;
+    margin: 0;
+  }
+
+  .product-page-timberland .product-details {
+    padding: 0;
+    margin: 0;
+  }
+
+  .product-page-timberland .product-details > .group-block {
+    padding-inline: var(--timberland-page-gutter);
+    padding-block: var(--timberland-page-gutter);
+    width: 100%;
+    max-width: none;
+  }
+
   @media screen and (min-width: 750px) {
     .product-page-timberland .product-information__grid:not(.product-information--media-none).product-information--media-left {
       grid-template-columns: 1fr 1fr;
@@ -13,10 +45,33 @@
 
     .product-page-timberland .product-information__grid:not(.product-information--media-none).product-information--media-left .product-information__media {
       grid-column: 1;
+      padding: 0;
     }
 
     .product-page-timberland .product-information__grid:not(.product-information--media-none).product-information--media-left .product-details {
       grid-column: 2;
+      padding: 0;
+    }
+
+    .product-page-timberland .product-information--media-left .product-information__media {
+      padding-right: 0;
+    }
+
+    .product-page-timberland .product-information--media-left .product-details {
+      padding-left: 0;
+    }
+
+    .product-page-timberland .product-details > .group-block {
+      padding-block: clamp(1.5rem, 3vw, 2.5rem);
+      padding-inline: var(--timberland-page-gutter);
+      padding-inline-end: clamp(1.5rem, 4vw, 3.5rem);
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    .product-page-timberland .product-details > .group-block {
+      padding-inline: var(--timberland-page-gutter);
+      padding-block: var(--padding-lg);
     }
   }
 
@@ -73,9 +128,12 @@
     display: none;
   }
 
-  .product-page-timberland .product-breadcrumbs {
+  /* Override theme grid column constraints */
+  .product-page-timberland .product-information__grid,
+  .product-page-timberland .product-information__grid.product-information__grid--half {
     grid-column: 1 / -1;
-    margin-block-end: var(--padding-lg);
+    width: 100%;
+    max-width: none;
   }
 
   .product-page-timberland .product-breadcrumbs__list {
@@ -385,70 +443,24 @@
     color: var(--color-foreground);
   }
 
+  .timberland-recommendations .section {
+    --timberland-page-gutter: clamp(1rem, 3vw, 3rem);
+  }
+
+  .timberland-recommendations .section-resource-list__header,
+  .timberland-recommendations .section-resource-list__content {
+    padding-inline: var(--timberland-page-gutter);
+  }
+
+  .timberland-recommendations .resource-list {
+    padding-inline: var(--timberland-page-gutter);
+  }
+
   .timberland-recommendations .section-resource-list__content .text-block p {
     font-size: clamp(1.125rem, 2vw, 1.375rem);
     font-weight: var(--font-weight-semibold);
     margin: 0;
     text-align: left;
-  }
-
-  .timberland-recommendations .resource-list__item .product-card__content {
-    background: #f3f3f3;
-    border-radius: 12px;
-    overflow: hidden;
-    padding: 0;
-    gap: 0;
-  }
-
-  .timberland-recommendations .resource-list__item .product-card__content > *:not(:first-child) {
-    padding-inline: var(--padding-md);
-  }
-
-  .timberland-recommendations .resource-list__item .product-card__content > *:last-child {
-    padding-block-end: var(--padding-md);
-  }
-
-  .timberland-recommendations .resource-list__item product-price {
-    padding-block-start: var(--padding-md);
-    font-weight: var(--font-weight-semibold);
-  }
-
-  .timberland-recommendations .resource-list__item .product-title,
-  .timberland-recommendations .resource-list__item [class*='product-title'] {
-    font-size: 0.875rem;
-    line-height: 1.35;
-  }
-
-  .timberland-recommendations .resource-list__item .product-rating-placeholder {
-    margin: var(--padding-xs) 0;
-    font-size: 0.75rem;
-  }
-
-  .timberland-recommendations .resource-list__item .timberland-card-buy {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    min-height: 2.5rem;
-    margin-block: var(--padding-sm) var(--padding-xs);
-    border-radius: 999px;
-    text-decoration: none;
-    text-transform: none;
-    font-size: 0.875rem;
-    font-weight: var(--font-weight-medium);
-  }
-
-  .timberland-recommendations .resource-list__item .product-card__content .group-block:has(.icon-block) {
-    display: flex;
-    flex-direction: row;
-    gap: var(--padding-sm);
-    padding-block-end: var(--padding-md);
-    opacity: 0.7;
-  }
-
-  .timberland-recommendations .resource-list__item .product-card__content .group-block:has(.icon-block) .icon-block__media {
-    width: 1rem;
-    height: 1rem;
   }
 
   @media screen and (max-width: 749px) {

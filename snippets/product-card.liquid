@@ -55,7 +55,7 @@
 %}
 
 <product-card
-  class="product-card size-style"
+  class="product-card product-card--timberland size-style"
   style="{% render 'size-style', settings: block_settings %}"
   data-product-id="{{ product.id }}"
   id="product-card-{{ block.id }}"
@@ -109,6 +109,8 @@
     {{ children }}
   </div>
 </product-card>
+
+{% render 'product-card-timberland-styles' %}
 
 {% stylesheet %}
   .product-card__placeholder-image svg {

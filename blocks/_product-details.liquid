@@ -33,8 +33,9 @@
 </div>
 
 {% stylesheet %}
-  /* Clear padding on mobile, if not full-width */
+  /* Clear padding on mobile — timberland layout handles gutters */
   @media screen and (max-width: 749px) {
+    .product-information.section--full-width .product-details > .group-block,
     .product-information.section--page-width .product-details > .group-block {
       padding-inline: 0;
     }

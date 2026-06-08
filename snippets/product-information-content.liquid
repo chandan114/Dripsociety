@@ -67,13 +67,17 @@
     endif
   endif
 
-  # Determine content width
-  case settings.content_width
-    when 'content-center-aligned'
-      assign content_width = 'page-width'
-    when 'content-full-width'
-      assign content_width = 'full-width'
-  endcase
+  # Determine content width — product pages use full bleed layout
+  if request.page_type == 'product'
+    assign content_width = 'full-width'
+  else
+    case settings.content_width
+      when 'content-center-aligned'
+        assign content_width = 'page-width'
+      when 'content-full-width'
+        assign content_width = 'full-width'
+    endcase
+  endif
 %}
 
 {% render 'product-page-timberland-styles' %}
