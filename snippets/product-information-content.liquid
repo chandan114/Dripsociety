@@ -76,9 +76,11 @@
   endcase
 %}
 
+{% render 'product-page-timberland-styles' %}
+
 <div class="section-background color-{{ settings.color_scheme }}"></div>
 <div
-  class="product-information section section--{{ content_width }} spacing-style color-{{ settings.color_scheme }} relative"
+  class="product-information product-page-timberland section section--{{ content_width }} spacing-style color-{{ settings.color_scheme }} relative"
   style="{% render 'spacing-style', settings: settings %} --gap: {{ settings.gap }}px;"
   data-testid="product-information"
 >
@@ -90,6 +92,10 @@
     class="{{ product_grid_class }}"
     data-product-grid-content
   >
+    {% if request.page_type == 'product' %}
+      {% render 'product-breadcrumbs', product: product %}
+    {% endif %}
+
     {% assign render_order_array = render_order | split: ',' %}
     {% capture media %}
       <div

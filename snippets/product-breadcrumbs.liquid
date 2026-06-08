@@ -1,0 +1,28 @@
+{% doc %}
+  Renders product page breadcrumb navigation.
+
+  @param {object} product - The product object
+{% enddoc %}
+
+{% liquid
+  assign breadcrumb_collection = collection
+  if breadcrumb_collection == blank and product.collections.size > 0
+    assign breadcrumb_collection = product.collections.first
+  endif
+%}
+
+<nav class="product-breadcrumbs" aria-label="Breadcrumb">
+  <ol class="product-breadcrumbs__list">
+    <li class="product-breadcrumbs__item">
+      <a href="{{ routes.root_url }}" class="product-breadcrumbs__link">Home</a>
+    </li>
+    {% if breadcrumb_collection != blank %}
+      <li class="product-breadcrumbs__item">
+        <a href="{{ breadcrumb_collection.url }}" class="product-breadcrumbs__link">{{ breadcrumb_collection.title | escape }}</a>
+      </li>
+    {% endif %}
+    <li class="product-breadcrumbs__item product-breadcrumbs__item--current" aria-current="page">
+      <span>{{ product.title | escape }}</span>
+    </li>
+  </ol>
+</nav>
